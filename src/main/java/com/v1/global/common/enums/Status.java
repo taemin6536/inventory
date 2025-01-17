@@ -1,4 +1,4 @@
-package com.v1.common.enums;
+package com.v1.global.common.enums;
 
 public enum Status {
     ACTIVE("판매중"),

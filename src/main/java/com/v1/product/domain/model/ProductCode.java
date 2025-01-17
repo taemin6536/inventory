@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ProductCode {
-    @Column(name = "code", nullable = false)
+    @Column(name = "product_code", nullable = false)
     private String value;
 
     public ProductCode(String value) {

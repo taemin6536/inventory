@@ -1,7 +1,7 @@
 package com.v1.product.domain.entity;
 
-import com.v1.common.entity.BaseEntity;
-import com.v1.common.enums.Status;
+import com.v1.global.common.entity.BaseEntity;
+import com.v1.global.common.enums.Status;
 import com.v1.product.domain.model.ProductCode;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -23,14 +23,14 @@ public class Product extends BaseEntity {
     @Embedded
     private ProductCode productCode;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "product_name")
     private String name;
 
-    @Column(columnDefinition = "text")
+    @Column(columnDefinition = "text", name = "product_description")
     private String description;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, name = "product_status")
     private Status status;
 
     @Builder
