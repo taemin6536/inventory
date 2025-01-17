@@ -43,9 +43,4 @@ public class ProductCode {
                 .equals(other.value.substring(0, 4));
     }
 
-//     값 변경이 필요하면 새로운 객체 생성 (setter 제거했기에 불변성 보장)
-    public ProductCode withNewValue(String newValue) {
-        return new ProductCode(newValue);
-    }
-
 }
