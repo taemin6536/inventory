@@ -2,7 +2,8 @@ package com.v1.product.api;
 
 import com.v1.product.api.mapper.ProductCommandMapper;
 import com.v1.product.api.dto.request.CreateProductRequest;
-import com.v1.product.api.dto.response.ProductResponse;
+import com.v1.product.api.dto.response.ProductQueryResponse;
+import com.v1.product.api.mapper.ProductResponseMapper;
 import com.v1.product.application.dto.command.CreateProductCommand;
 import com.v1.product.application.service.ProductService;
 import jakarta.validation.Valid;
@@ -19,11 +20,15 @@ import java.util.List;
 public class ProductController {
     private final ProductService productService;
     private final ProductCommandMapper productCommandMapper;
+    private final ProductResponseMapper productResponseMapper;
 
     @GetMapping(value = "/getAll")
-    public ResponseEntity<List<ProductResponse>> getProductList() {
-
-        return ResponseEntity.ok().build();
+    public ResponseEntity<List<ProductQueryResponse>> getProductList() {
+        return ResponseEntity.ok().body(
+                productResponseMapper.productQueryToResponse(
+                        productService.getProductList()
+                )
+        );
     }
 
     @PostMapping(value = "/create")
