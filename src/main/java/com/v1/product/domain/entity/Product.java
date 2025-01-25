@@ -39,6 +39,7 @@ public class Product extends BaseEntity {
         this.productCode = productCode;
         this.name = name;
         this.description = description;
+        this.status = Status.ACTIVE;
     }
 
     private void validateProductCode(ProductCode productCode, String name, String description) {
