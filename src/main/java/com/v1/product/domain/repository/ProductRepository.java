@@ -4,7 +4,9 @@ import com.v1.product.domain.entity.Product;
 
 import java.util.List;
 
-public interface ProductQueryRepository {
+public interface ProductRepository {
 
     List<Product> findAll();
+
+    void save(Product product);
 }
