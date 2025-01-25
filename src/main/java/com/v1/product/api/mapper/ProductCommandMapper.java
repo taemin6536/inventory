@@ -8,7 +8,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductCommandMapper {
 
-    public CreateProductCommand createProductRequestToCommand(@Valid CreateProductRequest createProductRequest) {
+    public CreateProductCommand createProductRequestToCommand(
+            @Valid CreateProductRequest createProductRequest
+    ) {
         return new CreateProductCommand(
                 createProductRequest.name(),
                 createProductRequest.description()
