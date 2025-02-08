@@ -5,6 +5,7 @@ import com.v1.product.application.dto.query.ProductQuery;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class ProductResponseMapper {
@@ -18,6 +19,6 @@ public class ProductResponseMapper {
                         productQuery.status(),
                         productQuery.productCode()
                 ))
-                .collect(java.util.stream.Collectors.toList());
+                .collect(Collectors.toList());
     }
 }

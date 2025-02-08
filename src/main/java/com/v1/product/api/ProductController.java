@@ -35,6 +35,7 @@ public class ProductController {
     public ResponseEntity<Void> createProduct(
             @RequestBody @Valid final CreateProductRequest createProductRequest
     ) {
+        //TODO : command 전환할때 category add
         CreateProductCommand command = productCommandMapper.createProductRequestToCommand(createProductRequest);
 
         productService.createProduct(command);

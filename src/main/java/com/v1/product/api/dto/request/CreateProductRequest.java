@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotEmpty;
 
 public record CreateProductRequest(
         @NotEmpty String name,
-        @NotEmpty String description
+        @NotEmpty String description,
+        @NotEmpty String category
 ) {
 }
