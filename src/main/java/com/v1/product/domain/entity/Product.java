@@ -20,14 +20,15 @@ public class Product extends BaseEntity {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Embedded
-    private ProductCode productCode;
 
     @Column(nullable = false, name = "product_name")
     private String name;
 
     @Column(columnDefinition = "text", name = "product_description")
     private String description;
+    
+    @Embedded
+    private ProductCode productCode;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, name = "product_status")

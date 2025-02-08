@@ -28,11 +28,9 @@ public class ProductService {
     public void createProduct(
             final CreateProductCommand createProductCommand
     ) {
-
         Product product = Product.builder()
                 .name(createProductCommand.name())
                 .description(createProductCommand.description())
-//                .productCode(createProductCommand.productCode())
                 .build();
 
         productRepository.save(product);

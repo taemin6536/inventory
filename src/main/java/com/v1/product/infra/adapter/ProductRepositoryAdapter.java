@@ -17,4 +17,9 @@ public class ProductRepositoryAdapter implements ProductRepository {
     public List<Product> findAll() {
         return productJpaRepository.findAll();
     }
+
+    @Override
+    public void save(Product product) {
+        productJpaRepository.save(product);
+    }
 }

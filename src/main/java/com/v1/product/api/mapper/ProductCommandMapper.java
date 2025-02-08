@@ -14,6 +14,7 @@ public class ProductCommandMapper {
         return new CreateProductCommand(
                 createProductRequest.name(),
                 createProductRequest.description()
+
         );
     }
 }
