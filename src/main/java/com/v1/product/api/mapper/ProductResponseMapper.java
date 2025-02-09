@@ -17,7 +17,7 @@ public class ProductResponseMapper {
                         productQuery.name(),
                         productQuery.description(),
                         productQuery.status(),
-                        productQuery.productCode()
+                        productQuery.category()
                 ))
                 .collect(Collectors.toList());
     }

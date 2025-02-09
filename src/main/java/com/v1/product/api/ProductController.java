@@ -4,8 +4,10 @@ import com.v1.product.api.mapper.ProductCommandMapper;
 import com.v1.product.api.dto.request.CreateProductRequest;
 import com.v1.product.api.dto.response.ProductQueryResponse;
 import com.v1.product.api.mapper.ProductResponseMapper;
+
 import com.v1.product.application.dto.command.CreateProductCommand;
 import com.v1.product.application.service.ProductService;
+
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -35,9 +37,7 @@ public class ProductController {
     public ResponseEntity<Void> createProduct(
             @RequestBody @Valid final CreateProductRequest createProductRequest
     ) {
-        //TODO : command 전환할때 category add
         CreateProductCommand command = productCommandMapper.createProductRequestToCommand(createProductRequest);
-
         productService.createProduct(command);
 
         return ResponseEntity.created(URI.create("/product")).build();

@@ -2,7 +2,6 @@ package com.v1.product.domain.entity;
 
 import com.v1.global.common.entity.BaseEntity;
 import com.v1.global.common.enums.Status;
-import com.v1.product.domain.model.ProductCode;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -26,27 +25,29 @@ public class Product extends BaseEntity {
 
     @Column(columnDefinition = "text", name = "product_description")
     private String description;
-    
-    @Embedded
-    private ProductCode productCode;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, name = "category")
+    private Category category;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, name = "product_status")
     private Status status;
 
+    @Column(nullable = false, name = "price")
+    private int price;
+
     @Builder
-    public Product(ProductCode productCode, String name, String description) {
-        validateProductCode(productCode, name, description);
-        this.productCode = productCode;
+    public Product(String name, String description, Category category, int price) {
+        validateProductCode(name, description);
+        this.category = category;
         this.name = name;
         this.description = description;
         this.status = Status.ACTIVE;
+        this.price = price;
     }
 
-    private void validateProductCode(ProductCode productCode, String name, String description) {
-        if (productCode == null) {
-            throw new IllegalArgumentException("상품 코드는 필수입니다.");
-        }
+    private void validateProductCode(String name, String description) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("상품 이름은 필수입니다.");
         }

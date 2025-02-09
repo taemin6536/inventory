@@ -17,7 +17,7 @@ public class ProductQueryMapper {
                         product.getName(),
                         product.getDescription(),
                         product.getStatus(),
-                        product.getProductCode()
+                        product.getCategory().getValue()
                 ))
                 .collect(Collectors.toList());
     }
