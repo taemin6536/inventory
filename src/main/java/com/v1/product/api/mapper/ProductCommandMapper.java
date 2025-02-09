@@ -9,12 +9,23 @@ import org.springframework.stereotype.Component;
 public class ProductCommandMapper {
 
     public CreateProductCommand createProductRequestToCommand(
-            @Valid CreateProductRequest createProductRequest
+            @Valid final CreateProductRequest createProductRequest
     ) {
         return new CreateProductCommand(
                 createProductRequest.name(),
-                createProductRequest.description()
-
+                createProductRequest.description(),
+                createProductRequest.category()
         );
     }
+
+//    private String makeCategory(
+//            @Valid final CreateProductRequest createProductRequest
+//    ) {
+//
+//
+//
+//        return "category";
+//    }
+
+
 }

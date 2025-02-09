@@ -3,8 +3,11 @@ package com.v1.product.application.service;
 import com.v1.product.application.dto.command.CreateProductCommand;
 import com.v1.product.application.dto.query.ProductQuery;
 import com.v1.product.application.mapper.ProductQueryMapper;
+
+import com.v1.product.domain.entity.Category;
 import com.v1.product.domain.entity.Product;
 import com.v1.product.domain.repository.ProductRepository;
+
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,6 +34,9 @@ public class ProductService {
         Product product = Product.builder()
                 .name(createProductCommand.name())
                 .description(createProductCommand.description())
+                .category(
+                        Category.from(createProductCommand.category())
+                )
                 .build();
 
         productRepository.save(product);
