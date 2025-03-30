@@ -1,13 +1,13 @@
 package com.v1.product.application.service;
 
+import com.v1.global.common.exceptions.ProductNotFoundException;
+import com.v1.product.api.dto.response.ProductQueryResponse;
 import com.v1.product.application.dto.command.CreateProductCommand;
 import com.v1.product.application.dto.query.ProductQuery;
 import com.v1.product.application.mapper.ProductQueryMapper;
-
 import com.v1.product.domain.entity.Category;
 import com.v1.product.domain.entity.Product;
 import com.v1.product.domain.repository.ProductRepository;
-
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -42,4 +42,13 @@ public class ProductService {
         productRepository.save(product);
     }
 
+    public ProductQueryResponse getProductById(Long id) {
+        // 1. 아이디를 통해 제품 조회
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException("Product not found with id: " + id));
+
+        // 2. 조회된 제품 정보를 ProductQueryResponse로 변환 및 반환
+        return productResponseMapper.productToQueryResponse(product);
+
+    }
 }
