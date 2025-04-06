@@ -1,6 +1,6 @@
 package com.v1.product.infra.adapter;
 
-import com.v1.product.domain.entity.Product;
+import com.v1.product.domain.model.Product;
 import com.v1.product.domain.repository.ProductRepository;
 import com.v1.product.infra.repository.ProductJpaRepository;
 import com.v1.product.infra.repository.ProductMybatisRepository;

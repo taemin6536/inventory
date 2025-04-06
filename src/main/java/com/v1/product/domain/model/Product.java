@@ -1,7 +1,8 @@
-package com.v1.product.domain.entity;
+package com.v1.product.domain.model;
 
 import com.v1.global.common.entity.BaseEntity;
 import com.v1.global.common.enums.Status;
+import com.v1.product.domain.entity.Category;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;

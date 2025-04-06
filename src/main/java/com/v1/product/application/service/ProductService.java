@@ -6,7 +6,7 @@ import com.v1.product.application.dto.command.CreateProductCommand;
 import com.v1.product.application.dto.query.ProductQuery;
 import com.v1.product.application.mapper.ProductQueryMapper;
 import com.v1.product.domain.entity.Category;
-import com.v1.product.domain.entity.Product;
+import com.v1.product.domain.model.Product;
 import com.v1.product.domain.repository.ProductRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -48,7 +48,6 @@ public class ProductService {
                 .orElseThrow(() -> new ProductNotFoundException("Product not found with id: " + id));
 
         // 2. 조회된 제품 정보를 ProductQueryResponse로 변환 및 반환
-        return productResponseMapper.productToQueryResponse(product);
-
+        return productQueryMapper.productToQueryResponse(product);
     }
 }

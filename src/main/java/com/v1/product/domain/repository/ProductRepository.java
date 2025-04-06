@@ -1,6 +1,6 @@
 package com.v1.product.domain.repository;
 
-import com.v1.product.domain.entity.Product;
+import com.v1.product.domain.model.Product;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,7 +1,7 @@
 package com.v1.product.application.mapper;
 
 import com.v1.product.application.dto.query.ProductQuery;
-import com.v1.product.domain.entity.Product;
+import com.v1.product.domain.model.Product;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
