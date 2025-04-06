@@ -1,8 +1,7 @@
 package com.v1.global.common.testdata;
 
 import com.v1.product.domain.entity.Category;
-import com.v1.product.domain.entity.Product;
-import com.v1.product.domain.model.ProductCode;
+import com.v1.product.domain.model.Product;
 import com.v1.product.domain.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
