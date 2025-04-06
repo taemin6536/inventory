@@ -33,6 +33,9 @@ public class Product {
     @Column(nullable = false)
     private BigDecimal price;
 
+    @Column(nullable = false)
+    private boolean deleted;
+
     // 1:1 연관관계 (지연 로딩)
     @OneToOne(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Inventory inventory;
@@ -41,6 +44,7 @@ public class Product {
         this.name = null;
         this.description = null;
         this.price = BigDecimal.ZERO;
+        this.deleted = false;
     }
 
     public Product(String name, String description, BigDecimal price) {
@@ -50,6 +54,7 @@ public class Product {
         this.name = name;
         this.description = description;
         this.price = price;
+        this.deleted = false;
     }
 
     // 상품 가격 변경 메서드
@@ -88,6 +93,11 @@ public class Product {
         this.name = name;
         this.description = description;
         this.price = price;
+        this.deleted = false;
+    }
+
+    public void deleted() {
+        this.deleted = true;
     }
 }
 

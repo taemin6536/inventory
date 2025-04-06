@@ -72,4 +72,17 @@ public class ProductService {
                 })
                 .orElseThrow(() -> new IllegalArgumentException("상품을 찾을 수 없음 id: " + id));
     }
+
+    public void deleteProduct(
+            final Long id
+    ) {
+        productRepository.findById(id)
+                .ifPresentOrElse(
+                        Product::deleted,
+                        () -> {
+                            throw new IllegalArgumentException("상품을 찾을 수 없음 id: " + id);
+                        }
+                );
+
+    }
 }

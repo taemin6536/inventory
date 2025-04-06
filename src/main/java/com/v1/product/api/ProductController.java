@@ -44,7 +44,7 @@ public class ProductController {
             @RequestBody @Valid final CreateProductRequest updateProductRequest
     ) {
         CreateProductCommand command = productCommandMapper.createProductRequestToCommand(updateProductRequest);
-        productService.updateProduct(id, command);
+//        productService.updateProduct(id, command);
 
         return ResponseEntity.ok().build();
     }
@@ -61,7 +61,7 @@ public class ProductController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
-        productService.deleteProduct(id);
+//        productService.deleteProduct(id);
         return ResponseEntity.noContent().build();
     }
 
