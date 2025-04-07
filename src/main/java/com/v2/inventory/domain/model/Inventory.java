@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Version;
 
 @Entity
 @Getter
@@ -23,14 +24,19 @@ public class Inventory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Version
+    private Long version;
+
     // Product 와 1:1 매핑
     @OneToOne
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
+    // 가용 재고 수량
     @Column(nullable = false)
     private Integer availableQuantity;
 
+    // 예약 재고 수량
     @Column(nullable = false)
     private Integer reservedQuantity;
 
@@ -48,7 +54,7 @@ public class Inventory {
         this.product = product;
     }
 
-    // 비즈니스 메서드: 재고 감소
+    // 재고 감소
     public void decreaseAvailableQuantity(int quantity) {
         if (quantity <= 0 || availableQuantity < quantity) {
             throw new IllegalArgumentException("유효하지 않은 감소 수량입니다.");
@@ -56,7 +62,7 @@ public class Inventory {
         this.availableQuantity -= quantity;
     }
 
-    // 비즈니스 메서드: 재고 증가
+    // 재고 증가
     public void increaseAvailableQuantity(int quantity) {
         if (quantity <= 0) {
             throw new IllegalArgumentException("유효하지 않은 증가 수량입니다.");
@@ -64,7 +70,7 @@ public class Inventory {
         this.availableQuantity += quantity;
     }
 
-    // 비즈니스 메서드: 예약 진행 (가용 재고 감소, 예약 재고 증가)
+    // 예약 진행 (가용 재고 감소, 예약 재고 증가)
     public void reserveStock(int quantity) {
         if (quantity <= 0 || availableQuantity < quantity) {
             throw new IllegalArgumentException("예약할 재고가 부족합니다.");
@@ -73,12 +79,20 @@ public class Inventory {
         this.reservedQuantity += quantity;
     }
 
-    // 비즈니스 메서드: 예약 해제 (예약 재고 감소, 가용 재고 증가)
+    // 예약 해제 (예약 재고 감소, 가용 재고 증가)
     public void releaseReservedStock(int quantity) {
         if (quantity <= 0 || reservedQuantity < quantity) {
             throw new IllegalArgumentException("해제할 예약 재고가 부족합니다.");
         }
         this.reservedQuantity -= quantity;
         this.availableQuantity += quantity;
+    }
+
+    // 재고 업데이트
+    public void updateAvailableStock(final int availableQuantity) {
+        if (availableQuantity > 10000) {
+            throw new IllegalArgumentException("재고 수량은 10000을 초과할 수 없습니다.");
+        }
+        this.availableQuantity = availableQuantity;
     }
 }

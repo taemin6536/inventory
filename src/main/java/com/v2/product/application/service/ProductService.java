@@ -1,5 +1,6 @@
 package com.v2.product.application.service;
 
+import com.v2.inventory.domain.model.Inventory;
 import com.v2.product.api.dto.req.CreateProductRequest;
 import com.v2.product.api.dto.req.UpdateProductRequest;
 import com.v2.product.api.dto.res.ProductResponse;
@@ -8,6 +9,7 @@ import com.v2.product.domain.model.Product;
 import com.v2.product.domain.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,9 +28,15 @@ public class ProductService {
         }
 
         final Product product = productMapper.toProduct(request);
+
+        // 초기 인벤토리 생성 (예: 가용재고와 예약 재고를 모두 0으로 초기화)
+        Inventory inventory = new Inventory(0, 0);
+        product.assignInventory(inventory);
+
         productRepository.save(product);
     }
 
+    @Transactional(readOnly = true)
     public ProductResponse getProductById(
             final Long id
     ) {
@@ -42,6 +50,7 @@ public class ProductService {
                 .orElseThrow(() -> new IllegalArgumentException("상품을 찾을 수 없음 id: " + id));
     }
 
+    @Transactional(readOnly = true)
     public List<ProductResponse> getAllProducts() {
         return productRepository.findAll()
                 .stream()
@@ -54,6 +63,7 @@ public class ProductService {
                 .toList();
     }
 
+    @Transactional
     public ProductResponse updateProduct(
             final Long id,
             final UpdateProductRequest request
@@ -85,4 +95,5 @@ public class ProductService {
                 );
 
     }
+
 }
