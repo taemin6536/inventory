@@ -48,6 +48,14 @@ public class ProductService {
                 .orElseThrow(() -> new ProductNotFoundException("Product not found with id: " + id));
 
         // 2. 조회된 제품 정보를 ProductQueryResponse로 변환 및 반환
-        return productQueryMapper.productToQueryResponse(product);
+        return null;
+    }
+
+    public List<ProductQuery> searchProducts(final String name, final String category, final Double minPrice, final Double maxPrice) {
+        return null;
+    }
+
+    public boolean checkProductExists(final Long id) {
+        return false;
     }
 }

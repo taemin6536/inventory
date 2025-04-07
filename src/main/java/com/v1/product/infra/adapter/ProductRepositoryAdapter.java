@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -23,5 +24,10 @@ public class ProductRepositoryAdapter implements ProductRepository {
     @Override
     public void save(Product product) {
         productJpaRepository.save(product);
+    }
+
+    @Override
+    public Optional<Product> findById(final Long id) {
+        return productJpaRepository.findById(id);
     }
 }
