@@ -17,9 +17,16 @@ public class MemberService {
         return memberRepository.findById(id);
     }
 
+    public User findUser2(String id) {
+        return memberRepository.findById(id);
+    }
+
     // User 와 id는 절대 null 이 될 수 없음 (기본값)
     // 하지만 name 은 null 일 수 있음을 명시
-    public void updateUser(User user, @Nullable String name) {
+    public void updateUser(
+            User user,
+            @Nullable String name
+    ) {
         user.changeName(name);
     }
 

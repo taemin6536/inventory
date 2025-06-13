@@ -17,4 +17,10 @@ public class MemberController {
     }
 
 
+    public User findUser2(
+            @PathVariable final String id
+    ){
+        return memberService.findUser2(id);
+    }
+
 }

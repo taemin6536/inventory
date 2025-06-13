@@ -7,7 +7,7 @@ public class Calculator {
         return a + b;
     }
 
-    // parameter b is nullable
+    // 파라미터 B는 널 가능이죠?
     public Integer minus(Integer a, @Nullable Integer b) {
         return a + (b == null ? 0 : b);
     }
